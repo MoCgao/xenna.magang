@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_equipment_item_form" model="ir.ui.view">
+        <field name="name">equipment.item.form</field>
+        <field name="model">equipment.item</field>
+        <field name="arch" type="xml">
+            <form string="Data Alat">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="category"/>
+                        </group>
+                        <group>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Catatan">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_equipment_item_list" model="ir.ui.view">
+        <field name="name">equipment.item.list</field>
+        <field name="model">equipment.item</field>
+        <field name="arch" type="xml">
+            <list string="Daftar Alat">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="category"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="action_equipment_item" model="ir.actions.act_window">
+        <field name="name">Data Alat</field>
+        <field name="res_model">equipment.item</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Buat data alat pertamamu di sini!
+            </p>
+        </field>
+    </record>
+</odoo>

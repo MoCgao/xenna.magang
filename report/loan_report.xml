@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Template Utama -->
+        <template id="report_equipment_loan_document">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Laporan Peminjaman Alat</h2>
+                    <!-- Isi konten laporan di sini -->
+                </div>
+            </t>
+        </template>
+
+        <!-- Definisi QWeb Report -->
+        <record id="action_report_equipment_loan" model="ir.actions.report">
+            <field name="name">Cetak Peminjaman</field>
+            <field name="model">equipment.loan</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">Equipment_Loan_Tracker.report_equipment_loan_document</field>
+            <field name="report_file">Equipment_Loan_Tracker.report_equipment_loan_document</field>
+            <field name="binding_model_id" ref="model_equipment_loan"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+
+    <record id="action_report_equipment_loan" model="ir.actions.report">
+        <field name="name">Bukti Peminjaman</field>
+        <field name="model">equipment.loan</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Equipment_Loan_Tracker.report_loan_document</field>
+        <field name="report_file">Equipment_Loan_Tracker.report_loan_document</field>
+        <field name="binding_model_id" ref="model_equipment_loan"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <template id="report_loan_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center mb-4">
+                            <h2><strong>Bukti Peminjaman Alat</strong></h2>
+                        </div>
+                        
+                        <br/>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 40%;"><strong>Nama Peminjam</strong></td>
+                                    <td><span t-field="doc.borrower_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email</strong></td>
+                                    <td><span t-field="doc.borrower_email"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Nomor Telepon</strong></td>
+                                    <td><span t-field="doc.borrower_phone"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Alat yang Dipinjam</strong></td>
+                                    <td><span t-field="doc.equipment_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tanggal Pinjam</strong></td>
+                                    <td><span t-field="doc.loan_date"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Batas Kembali (Jatuh Tempo)</strong></td>
+                                    <td><span t-field="doc.due_date"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <br/>
+                        <div class="row mt-5">
+                            <div class="col-6 text-center">
+                                <span>Peminjam,</span>
+                                <br/><br/><br/><br/>
+                                <strong><span t-field="doc.borrower_id.name"/></strong>
+                            </div>
+                            <div class="col-6 text-center">
+                                <span>Admin,</span>
+                                <br/><br/><br/><br/>
+                                <strong>(....................................)</strong>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

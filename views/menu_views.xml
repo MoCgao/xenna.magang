@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_equipment_root" name="Peminjaman Alat" sequence="10"/>
+
+
+    <menuitem id="menu_equipment_master" name="Master Data" parent="menu_equipment_root" sequence="10"/>
+    <menuitem id="menu_equipment_transaction" name="Transaksi" parent="menu_equipment_root" sequence="20"/>
+
+
+    <menuitem id="menu_item_action_link" 
+              name="Data Alat" 
+              parent="menu_equipment_master" 
+              action="action_equipment_item" 
+              sequence="10"/>
+              
+
+    <menuitem id="menu_loan_action_link" 
+              name="Data Peminjaman" 
+              parent="menu_equipment_transaction" 
+              action="action_equipment_loan" 
+              sequence="10"/>
+</odoo>

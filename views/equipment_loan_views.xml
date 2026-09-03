@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_equipment_loan_form" model="ir.ui.view">
+        <field name="name">equipment.loan.form</field>
+        <field name="model">equipment.loan</field>
+        <field name="arch" type="xml">
+            <form string="Transaksi Peminjaman">
+                
+                <header>
+                    <button name="action_confirm" string="Konfirmasi Pinjaman" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_return" string="Kembalikan Alat" type="object" class="oe_highlight" invisible="state != 'ongoing'"/>
+                    <button name="action_lost_penalty" string="Barang Hilang (Denda)" type="object" class="btn-danger"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,ongoing,returned"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="equipment_id"/>
+                            <field name="borrower_id"/>
+                            <field name="borrower_email"/>
+                            <field name="borrower_phone"/>
+                        </group>
+                        <group>
+                            <field name="loan_date"/>
+                            <field name="due_date"/>
+                            <field name="return_date"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Catatan Kondisi">
+                            <field name="line_notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_equipment_loan_list" model="ir.ui.view">
+        <field name="name">equipment.loan.list</field>
+        <field name="model">equipment.loan</field>
+        <field name="arch" type="xml">
+            <list string="Daftar Peminjaman">
+                <field name="equipment_id"/>
+                <field name="borrower_id"/>
+                <field name="borrower_email"/>
+                <field name="borrower_phone"/>
+                <field name="loan_date"/>
+                <field name="due_date"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_equipment_loan" model="ir.actions.act_window">
+        <field name="name">Daftar Peminjaman</field>
+        <field name="res_model">equipment.loan</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Catat transaksi peminjaman baru di sini!
+            </p>
+        </field>
+    </record>
+</odoo>
